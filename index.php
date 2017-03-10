@@ -13,7 +13,7 @@ $article=new Article();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog</title>
+    <title>Clean Blog Master</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="web/blog/bootstrap/css/bootstrap.min.css" rel="stylesheet">

@@ -1,8 +1,14 @@
 <?php
 use app\Models\Article;
-require_once 'app/config.php';
+require_once '../app/config.php';
 
 $article=new Article();
+if(isset($_GET['article']) && $_GET['article']!=""){
+    $id=$_GET['article'];
+    $article->find($id);
+    //echo $article;
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,13 +22,13 @@ $article=new Article();
     <title>Clean Blog</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="web/blog/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../web/blog/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="web/css/clean-blog.min.css" rel="stylesheet">
+    <link href="../web/css/clean-blog.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="web/blog/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../web/blog/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -43,14 +49,14 @@ $article=new Article();
                 <span class="sr-only">Toggle navigation</span>
                 Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+            <a class="navbar-brand" href="../index.php">Start Bootstrap</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="index.php">Home</a>
+                    <a href="../index.php">Home</a>
                 </li>
                 <li>
                     <a href="#">About</a>
@@ -70,44 +76,35 @@ $article=new Article();
 
 <!-- Page Header -->
 <!-- Set your background image for this header on the line below. -->
-<header class="intro-header" style="background-image: url('web/img/home-bg.jpg')">
+<header class="intro-header" style="background-image: url('../web/img/post-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>Clean Blog</h1>
-                    <hr class="small">
-                    <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                <div class="post-heading">
+                    <h1>Man must explore, and this is exploration at its greatest</h1>
+                    <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
+                    <span class="meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <?php
-            $data=$article->list();
-            while ($obj=$data->fetch(PDO::FETCH_ASSOC)){
-            ?>
-            <div class="post-preview">
-                <a href="view/show_article.php?article=<?= $obj['id'] ?>">
-                    <h2 class="post-title">
-                        <?php echo $obj['titre'] ?>
-                    </h2>
-                </a>
-                <h3 class="post-subtitle">
-                    <?php echo $obj['categorie'] ?>
-                </h3>
-                <p class="post-meta">Posted by <?php echo $obj['auteur'] ?> on <?php echo $obj['datecreation'] ?></p>
+
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 class="section-heading"><?= $article->getTitre() ?></h2>
+                <h4 class="post-subtitle pull-right">
+                    <?= $article->getCategorie() ?>
+                </h4><br>
+                <p><?= $article->getDescription() ?></p>
+                <p class="post-meta">Posted by <?= $article->getAuteur() ?> on <?= $article->getDatecreation() ?></p>
             </div>
-            <hr>
-            <?php } ?>
         </div>
     </div>
-</div>
+</article>
 
 <hr>
 
@@ -149,17 +146,17 @@ $article=new Article();
 </footer>
 
 <!-- jQuery -->
-<script src="web/blog/jquery/jquery.min.js"></script>
+<script src="../web/blog/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="web/blog/bootstrap/js/bootstrap.min.js"></script>
+<script src="../web/blog/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Contact Form JavaScript -->
-<script src="web/js/jqBootstrapValidation.js"></script>
-<script src="web/js/contact_me.js"></script>
+<script src="../web/js/jqBootstrapValidation.js"></script>
+<script src="../web/js/contact_me.js"></script>
 
 <!-- Theme JavaScript -->
-<script src="web/js/clean-blog.min.js"></script>
+<script src="../web/js/clean-blog.min.js"></script>
 </body>
 </html>
 

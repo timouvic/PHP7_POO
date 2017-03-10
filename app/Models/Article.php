@@ -8,22 +8,10 @@ class Article extends Model
     protected $auteur;
     protected $categorie;
     protected $description;
-    protected $datecreaion;
+    protected $datecreation;
     protected $etat;
     protected $photo;
     var $table='article';
-
-   /* public function __construct($id,$titre,$auteur,$categorie,$description,$datecreation,$etat,$photo)
-    {
-        $this->id=$id;
-        $this->titre=$titre;
-        $this->auteur=$auteur;
-        $this->categorie=$categorie;
-        $this->description=$description;
-        $this->datecreaion=$datecreation;
-        $this->etat=$etat;
-        $this->photo=$photo;
-    }*/
 
     /**
      * convertir un objet en chaine de caratere
@@ -117,17 +105,17 @@ class Article extends Model
     /**
      * @return mixed
      */
-    public function getDatecreaion()
+    public function getDatecreation()
     {
-        return $this->datecreaion;
+        return $this->datecreation;
     }
 
     /**
      * @param mixed $datecreaion
      */
-    public function setDatecreaion($datecreaion)
+    public function setDatecreation($datecreation)
     {
-        $this->datecreaion = $datecreaion;
+        $this->datecreation = $datecreation;
     }
 
     /**

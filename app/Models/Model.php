@@ -17,7 +17,7 @@ class Model extends DB
         try{
             $res=$this->db->query("select * from ".$this->table);
             return $res;
-        }catch (PDOException $e){
+        }catch (\PDOException $e){
             echo $e->getMessage();
         }
 
@@ -37,7 +37,7 @@ class Model extends DB
             foreach ($data as $i=>$v){
                 $this->$i=$v;
             }
-        }catch (PDOException $e){
+        }catch (\PDOException $e){
             echo $e->getMessage();
         }
 
@@ -59,7 +59,7 @@ class Model extends DB
         try{
         $res=$this->db->prepare($sql);
         $res->execute($data);
-        }catch (PDOException $e){
+        }catch (\PDOException $e){
             echo $e->getMessage();
         }
 
@@ -77,7 +77,7 @@ class Model extends DB
             $res=$this->db->prepare($sql);
             $res->execute($data);
             header('location:ajout_article.php');
-        }catch (PDOException $e){
+        }catch (\PDOException $e){
             echo $e->getMessage().'<br/>'.$sql;
         }
 
@@ -90,7 +90,7 @@ class Model extends DB
             $res=$this->db->prepare($sql);
             $res->execute(array('id'=>$id));
             header('location:ajout_article.php');
-        }catch (PDOException $e){
+        }catch (\PDOException $e){
             echo $e->getMessage().'<br/>'.$sql;
         }
 

@@ -2,6 +2,9 @@
 use app\Models\User;
 require_once '../app/config.php';
 
+if(isset($_SESSION['admin']) && $_SESSION['admin']['connect']!=""){
+    header('location:profile.php');
+}
 
 $user=new User();
 ?>
@@ -29,6 +32,7 @@ $user=new User();
     </form>
 </div>
 <?php
+//print_r($_SESSION);
 if (isset($_POST['ok'])){
     $motcle=$_POST['motcle'];
     $pwd=$_POST['pwd'];

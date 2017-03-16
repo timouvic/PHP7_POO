@@ -65,7 +65,7 @@ class User extends Model
     }
 
     public function connect($motcle,$pwd){
-        $sql="select id from user where (mail=:mail or login=:login) and pwd=:pwd";
+        $sql="select id,login from user where (mail=:mail or login=:login) and pwd=:pwd";
         try{
             $res=$this->db->prepare($sql);
             $res->execute(array(
@@ -74,11 +74,19 @@ class User extends Model
                 'pwd'=>$pwd,
             ));
             $obj=$res->fetch();
-            $_SESSION['user']=$obj['id'];
+            //$_SESSION['user']=$obj['id'];
+            $_SESSION['admin']=array(
+                'connect'=>true,
+                'user'=>$obj['id'],
+            );
             header('location:profile.php');
         }catch (PDOException $e){
             echo $e->getMessage();
         }
+    }
+    public function logout(){
+        session_unset('admin');
+        header('location:login.php');
     }
 
 
